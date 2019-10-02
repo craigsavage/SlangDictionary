@@ -1,0 +1,2 @@
+# SlangDictionary
+by Craig Savage
