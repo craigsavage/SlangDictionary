@@ -1,5 +1,3 @@
-package SlangDictionary;
-
 /**
  * Slang Class is used for creating a new Slang words.
  */
@@ -8,17 +6,28 @@ public class Slang {
     private String word;
     private String definition;
 
+    /**
+     * Slang() constructor is used to creat a new slang.
+     * @param word contains the name of the word.
+     * @param definition contains the definition of the word.
+     */
     public Slang(String word, String definition) {
         this.word = word;
         this.definition = definition;
     }
 
-    // Gets the word
+    /**
+     * getWord() is used to get the slang word.
+     * @return the slang word.
+     */
     public String getWord() {
         return this.word;
     }
 
-    // Gets the definition
+    /**
+     * getDefinition() gets the definition of the slang word.
+     * @return the definition of the slang word.
+     */
     public String getDefinition() {
         return this.definition;
     }
