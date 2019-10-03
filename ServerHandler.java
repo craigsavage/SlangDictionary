@@ -20,6 +20,7 @@ public class ServerHandler extends Thread {
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
             String response;
             String wordToFind;
+            String wordToAdd, definitionToAdd;
             
             // Creates a new Slang Dictionary object
             SlangDictionary dictionary = new SlangDictionary();
@@ -46,8 +47,13 @@ public class ServerHandler extends Thread {
                         break;
 
                     case "add":
-                        // Adds new user inputted slang
-                        dictionary.addItem(createSlang());
+                        // Gets the word and definition to be added
+                        wordToAdd = input.readLine();
+                        definitionToAdd = input.readLine();
+
+                        // Adds new user inputted slang to the slang dictionary
+                        response = dictionary.addItem(wordToAdd, definitionToAdd);
+                        output.println(response);
                         break;
 
                     case "remove":
@@ -85,20 +91,5 @@ public class ServerHandler extends Thread {
         } catch(IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
-    }
-
-    public static Slang createSlang() {
-        Scanner in = new Scanner(System.in);
-
-        // Get new user inputted slang and add it to the dictionary
-        System.out.print("Enter a new slang word: ");
-        String newSlangWord = in.nextLine();
-
-        System.out.print("Enter a definition for your word: ");
-        String newSlangDefinition = in.nextLine();
-
-        in.close(); // Close Scanner
-
-        return new Slang(newSlangWord, newSlangDefinition);
     }
 }
