@@ -12,7 +12,7 @@ public class Client {
             BufferedReader input = new BufferedReader(
                     new InputStreamReader(socket.getInputStream()));
             PrintWriter output = new PrintWriter(socket.getOutputStream(), true);
-
+            
             Scanner in = new Scanner(System.in);
             String userInput;
             String response;
@@ -34,12 +34,22 @@ public class Client {
                 userInput = in.nextLine().toLowerCase();
                 output.println(userInput);
 
-                if(userInput.equals("search") || userInput.equals("remove")) {
+                if(userInput.equals("search") || userInput.equals("remove") || (userInput.equals("add"))) {
                     System.out.println("Enter word: ");
 
-                    // Get word to search for and send to server
+                    // This allows for an extra input so that user may add a word now and definition after if statement
+                    if(userInput.equals("add")) {
+                        
+                        // Get word to send to server
+                        userInput = in.nextLine();
+                        output.println(userInput);
+
+                        System.out.println("Enter definition: ");
+                    }
+
+                    // Get word to send to server
                     userInput = in.nextLine();
-                    output.println(userInput);
+                    output.println(userInput);                 
 
                     // Get found word (if found) else nothing fonund back from the server
                     response = input.readLine();
