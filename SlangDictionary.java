@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Collections;
 
 public class SlangDictionary {
 
@@ -62,8 +63,36 @@ public class SlangDictionary {
         return wordToFind + " not found.";
     }
 
-    public void addItem(Slang slang) {
-        slangDictionary.add(slang);
+    /**
+     * addItem() is used to add a new slang to the slang dictionary.
+     * @param wordToAdd contains the slang word to be added.
+     * @param definitionToAdd contains the defnition of the slang word to be added.
+     * @return the word that was added to the dictionary.
+     */
+    public String addItem(String wordToAdd, String definitionToAdd) {
+        
+        // Searches the dictionary for that word
+        for (Slang slang : slangDictionary) {
+
+            // If the word is found then inform the user that the word already exists
+            if (slang.getWord().compareToIgnoreCase(wordToAdd) == 0) {
+                return wordToAdd + " is already in the slang dictionary.";
+            }
+        }
+
+        // Capitalizes the first letter of the word
+        wordToAdd = wordToAdd.substring(0, 1).toUpperCase() + wordToAdd.substring(1).toLowerCase();
+        definitionToAdd = definitionToAdd.substring(0, 1).toUpperCase() + definitionToAdd.substring(1).toLowerCase();
+
+        // Adds the word with it's definition to the slang dictionary
+        slangDictionary.add(new Slang(wordToAdd, definitionToAdd));
+
+        // Contains the slang that was just added
+        String word = slangDictionary.get(slangDictionary.size() - 1).toString();
+
+        // Sort the slang dictionary
+        Collections.sort(slangDictionary, new SlangDictionaryComparator());
+        return "Added: |" + word;
     }
 
     /**
