@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 public class ServerHandler extends Thread {
     private Socket socket;
+    private SlangDictionary dictionary;
 
-    public ServerHandler(Socket socket) {
+    public ServerHandler(Socket socket, SlangDictionary dict) {
         this.socket = socket;
+        this.dictionary = dict;
     }
 
     @Override
@@ -21,9 +23,6 @@ public class ServerHandler extends Thread {
             String response;
             String wordToFind;
             String wordToAdd, definitionToAdd;
-            
-            // Creates a new Slang Dictionary object
-            SlangDictionary dictionary = new SlangDictionary();
 
             while(true) {
                 // Contains the user's operation choice
