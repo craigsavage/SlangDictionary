@@ -56,7 +56,6 @@ public class Client {
 
                     prettyPrint(response);
                 }
-
                 else if(!userInput.equals("exit")) {
                     response = input.readLine();
                     prettyPrint(response);
